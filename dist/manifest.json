@@ -12,6 +12,8 @@
   "homepage_url": "https://github.com/menhera-org/webextension-template",
   "description": "A general Firefox automation add-on.",
   "permissions": [
+    "tabs",
+    "<all_urls>"
   ],
   "incognito": "spanning",
   "background": {
@@ -20,5 +22,15 @@
   "icons": {
     "48": "icon.svg",
     "96": "icon.svg"
-  }
+  },
+  "user_scripts": {
+    "api_script": "api.js"
+  },
+  "protocol_handlers": [
+    {
+      "protocol": "ext+zombie",
+      "name": "Zombie URL",
+      "uriTemplate": "/start-zombie.html?url=%s"
+    }
+  ]
 }

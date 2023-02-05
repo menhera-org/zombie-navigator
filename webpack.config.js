@@ -18,8 +18,16 @@ module.exports = {
 
   entry: {
     'background': {
-      import: './src/background.ts',
+      import: './src/background/index.ts',
       filename: 'background.js',
+    },
+    'api': {
+      import: './src/api/index.ts',
+      filename: 'api.js',
+    },
+    'start-zombie': {
+      import: './src/start-zombie/index.ts',
+      filename: 'start-zombie.js',
     },
   },
 
