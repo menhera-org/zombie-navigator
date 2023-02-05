@@ -1,7 +1,7 @@
 {
-  "name": "webextension-template",
+  "name": "zombie-navigator",
   "version": "0.1.0",
-  "description": "A template for webextension development",
+  "description": "A general Firefox automation add-on.",
   "main": "./dist/index.js",
   "scripts": {
     "build": "node script/clean.js ; eslint . ; webpack ; node script/build.js",

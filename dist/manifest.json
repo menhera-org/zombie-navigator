@@ -1,16 +1,16 @@
 {
   "manifest_version": 2,
-  "name": "WebExtension Template",
+  "name": "Zombie Navigator",
   "version": "0.1.0",
   "browser_specific_settings": {
     "gecko": {
-      "id": "webextension-template@menhera.org",
+      "id": "zombie-navigator@menhera.org",
       "strict_min_version": "91.0"
     }
   },
   "author": "Menhera.org",
   "homepage_url": "https://github.com/menhera-org/webextension-template",
-  "description": "Description.",
+  "description": "A general Firefox automation add-on.",
   "permissions": [
   ],
   "incognito": "spanning",
