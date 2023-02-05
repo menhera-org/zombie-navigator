@@ -2,12 +2,12 @@
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
 	 y="0px" viewBox="0 0 256 256" style="enable-background:new 0 0 256 256;" xml:space="preserve">
 <style type="text/css">
-	.st0{stroke:#FFFFFF;stroke-width:8;stroke-miterlimit:10;}
-	.st1{fill:#FFFFFF;}
+	.st0{stroke:#FFFFFF;stroke-width:16;stroke-miterlimit:10;}
+	.st1{fill:none;stroke:#FFFFFF;stroke-width:12;stroke-miterlimit:10;}
 </style>
 <path class="st0" d="M119.5,27.5c77-8,113.6959,105.239,110,152c-1.0608,13.4211-14.6802,44.0423-28,46
 	c-14.2689,2.0972-33.8167-34.614-48-32c-9.1366,1.6839-6.2858,30.7789-15,34c-13.0012,4.8057-29.1728-34.0334-43-35
 	c-14.8131-1.0355-27.1872,40.9597-42,42c-13.9053,0.9766-28.1578-33.1827-30-47C17.3352,141.2616,46.646,35.0692,119.5,27.5z"/>
-<circle class="st1" cx="88" cy="94" r="12"/>
-<circle class="st1" cx="152" cy="91" r="12"/>
+<circle class="st1" cx="88" cy="96" r="16"/>
+<circle class="st1" cx="155" cy="90" r="16"/>
 </svg>
