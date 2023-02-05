@@ -13,7 +13,8 @@
   "description": "A general Firefox automation add-on.",
   "permissions": [
     "tabs",
-    "<all_urls>"
+    "<all_urls>",
+    "webRequest"
   ],
   "incognito": "spanning",
   "background": {
