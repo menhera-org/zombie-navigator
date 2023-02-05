@@ -6,3 +6,18 @@
 
 import browser from 'webextension-polyfill';
 import '../modules/FramingHeadersService';
+
+// Cleanup zombie containers
+browser.tabs.onRemoved.addListener(async () => {
+  const tabs = await browser.tabs.query({});
+  const contextualIdentities = await browser.contextualIdentities.query({});
+  const containers = new Map(contextualIdentities.map((c) => [c.cookieStoreId, c]));
+  for (const tab of tabs) {
+    if (!tab.cookieStoreId) continue;
+    containers.delete(tab.cookieStoreId);
+  }
+  for (const container of containers.values()) {
+    if (!container.name.match(/^Zombie \d+$/)) continue;
+    await browser.contextualIdentities.remove(container.cookieStoreId);
+  }
+});

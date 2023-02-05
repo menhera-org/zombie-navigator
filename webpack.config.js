@@ -29,6 +29,10 @@ module.exports = {
       import: './src/start-zombie/index.ts',
       filename: 'start-zombie.js',
     },
+    'zombie': {
+      import: './src/zombie/index.ts',
+      filename: 'zombie.js',
+    },
   },
 
   output: {

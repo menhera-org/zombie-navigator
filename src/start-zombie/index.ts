@@ -15,18 +15,34 @@ const createId = () => {
   return DataEncoder.encodeHex(bytes);
 };
 
+const createContextualIdentity = async () => {
+  const contextualIdentity = await browser.contextualIdentities.create({
+    name: 'Zombie',
+    color: 'toolbar',
+    icon: 'chill',
+  });
+  const userContextId = parseInt(contextualIdentity.cookieStoreId.match(/^firefox-container-(\d+)$/)?.[1] ?? '0', 10);
+  await browser.contextualIdentities.update(contextualIdentity.cookieStoreId, {
+    name: 'Zombie ' + userContextId,
+  });
+  return contextualIdentity.cookieStoreId;
+};
+
 const startZombie = async (url: URL) => {
   const ZOMBIE_URL = browser.runtime.getURL('zombie.html');
   const params = new URLSearchParams();
   params.set('url', url.href);
   const id = createId();
   params.set('id', id);
+  const cookieStoreId = await createContextualIdentity();
   const zombieUrl = new URL(ZOMBIE_URL);
   zombieUrl.search = params.toString();
   await browser.windows.create({
     url: zombieUrl.toString(),
     type: 'popup',
     state: 'fullscreen',
+    focused: true,
+    cookieStoreId,
   });
   window.close();
 };
