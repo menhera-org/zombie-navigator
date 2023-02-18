@@ -11,10 +11,12 @@ export class ConsoleOutput {
   public readonly type: OutputType;
   public readonly data: unknown[];
   public readonly origData: unknown[];
+  public readonly stack: string;
 
-  public constructor(type: OutputType, data: unknown[] = [], origData: unknown[] = []) {
+  public constructor(type: OutputType, data: unknown[] = [], origData: unknown[] = [], stack = '') {
     this.type = type;
     this.data = data;
     this.origData = origData;
+    this.stack = stack;
   }
 }

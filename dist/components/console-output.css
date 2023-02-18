@@ -1,0 +1,92 @@
+/* -*- indent-tabs-mode: nil; tab-width: 2; -*- */
+/* vim: set ts=2 sw=2 et ai : */
+/*
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at http://mozilla.org/MPL/2.0/.
+*/
+
+@import '../css/theme.css';
+
+@namespace url(http://www.w3.org/1999/xhtml);
+
+* {
+  --error-color: #7d001d;
+  --error-background-color: #ffecee;
+  --warning-color: #4c3a00;
+  --warning-background-color: #ffefd4;
+}
+
+@media (prefers-color-scheme: dark) {
+  * {
+    --error-color: #ffc6ca;
+    --error-background-color: #7d001d;
+    --warning-color: #ffecee;
+    --warning-background-color: #4c3a00;
+  }
+}
+
+:host {
+  font-family: monospace;
+  overflow-wrap: break-word;
+  color: var(--text-color);
+}
+
+.output {
+  border: solid 1px var(--border-color);
+}
+
+.data {
+  display: flex;
+  flex-direction: row;
+}
+
+.data:not(:first-child) {
+  border-block-start: solid 1px var(--border-color);
+}
+
+.data.info {
+  background: .5em .25em / 1em no-repeat url(../images/firefox-icons/info.svg);
+}
+
+.data.error {
+  color: var(--error-color);
+  background: var(--error-background-color) .5em .25em / 1em no-repeat url(../images/firefox-icons/error.svg);
+}
+
+.data.warn {
+  color: var(--warning-color);
+  background: var(--warning-background-color) .5em .25em / 1em no-repeat url(../images/firefox-icons/alert.svg);
+}
+
+.data-inner {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  column-gap: .75em;
+  padding-block: .2em;
+  padding-inline-start: 2em;
+  padding-inline-end: 1em;
+}
+
+.data-stack {
+  inline-size: max-content;
+  max-inline-size: 40%;
+  padding-block: .2em;
+  padding-inline-start: 1em;
+  padding-inline-end: 1em;
+}
+
+.object-label {
+  color: #007bc9;
+  margin-inline-end: .5em;
+}
+
+.object-value {
+  white-space: pre-wrap;
+}
+
+:is(.object-number, .object-string, .object-regexp, .object-boolean, .object-bigint) {
+  color: #478600;
+}

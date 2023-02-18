@@ -6,7 +6,7 @@
   file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-:root {
+* {
   --text-color: #222;
   --background-color: #fff;
   --border-color: #888;
@@ -18,7 +18,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  * {
     --text-color: #fff;
     --background-color: #0c0c0d;
     --border-color: #999;

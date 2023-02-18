@@ -12,7 +12,7 @@ import { OutputType, ConsoleData, ConsoleDataValue } from "./RemoteConsoleData";
 
 const TypedArray = Object.getPrototypeOf(Uint8Array);
 
-export class ConsoleDefaultConsumer implements ConsoleConsumer {
+export class RemoteConsoleConsumer implements ConsoleConsumer {
   public readonly onMessage = new EventSink<ConsoleData>();
 
   public output(output: ConsoleOutput): void {
@@ -68,7 +68,7 @@ export class ConsoleDefaultConsumer implements ConsoleConsumer {
               type: 'object',
               objectType: 'function',
               value: String(value),
-              string: value.name,
+              string: `function ${value.name}`,
             });
             break;
           }
@@ -128,6 +128,13 @@ export class ConsoleDefaultConsumer implements ConsoleConsumer {
                 value: map,
                 string: `Map(${map.size})`,
               });
+            } else if (value instanceof RegExp) {
+              resultValues.push({
+                type: 'object',
+                objectType: 'regexp',
+                value: value.source,
+                string: 'RegExp',
+              });
             } else {
               const objValue = value as { [Symbol.toStringTag]?: string , [key: string]: unknown };
               let obj: { [key: string]: unknown };
@@ -146,7 +153,7 @@ export class ConsoleDefaultConsumer implements ConsoleConsumer {
                 type: 'object',
                 objectType: 'object',
                 value: obj,
-                string: String(objValue[Symbol.toStringTag]) ?? String(obj.constructor.name) ?? string,
+                string: String(objValue[Symbol.toStringTag] ?? obj.constructor.name ?? string),
               });
             }
           }
@@ -157,6 +164,7 @@ export class ConsoleDefaultConsumer implements ConsoleConsumer {
     const consoleData: ConsoleData = {
       type: type,
       values: resultValues,
+      stack: output.stack,
     };
     this.onMessage.dispatch(consoleData);
   }

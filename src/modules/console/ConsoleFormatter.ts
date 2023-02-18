@@ -8,7 +8,7 @@ import { ConsoleStyle } from "./ConsoleStyle";
 
 export class ConsoleFormatter {
   public static tokenize(text: string): string[] {
-    return text.match(/%%|%[oO]|%s|%(?:.[0-9]+)?[dif]|%c|.+/g) ?? [text];
+    return text.match(/%%|%[oO]|%s|%(?:.[0-9]+)?[dif]|%c|.+?/g) ?? [text];
   }
 
   public static format(...args: unknown[]): unknown[] {
@@ -89,6 +89,9 @@ export class ConsoleFormatter {
       }
       if (strBuffer != '') {
         results.push(strBuffer);
+      }
+      for (const arg of args) {
+        results.push(arg);
       }
       return results;
     }

@@ -26,9 +26,10 @@ export class Console {
   }
 
   private logWithType(type: OutputType, ...data: unknown[]): void {
+    const stack = (new Error().stack ?? '').split('\n').slice(1).join('\n');
     data = [... data]; // prevent accidential mutation
     const formattedData = ConsoleFormatter.format(... data);
-    const output = new ConsoleOutput(type, formattedData, data);
+    const output = new ConsoleOutput(type, formattedData, data, stack);
     this._consumer.output(output);
   }
 
@@ -61,10 +62,8 @@ export class Console {
   }
 
   public countReset(label = 'default'): void {
-    if (!this._counters[label]) {
-      this._counters[label] = 0;
-    }
-    this.logWithType('log', `${label}: ${this._counters[label]}`);
+    delete this._counters[label];
+    this.logWithType('log', `${label}: 0`);
   }
 
   public debug(...data: unknown[]): void {
@@ -126,32 +125,32 @@ export class Console {
 
   public time(label = 'default'): void {
     this._timers[label] = Date.now();
-    this.log(`${label}: Timer started`);
+    this.logWithType('log', `${label}: Timer started`);
   }
 
   public timeEnd(label = 'default'): void {
     const timer = this._timers[label];
     if ('undefined' == typeof timer) {
-      this.log(`${label}: Timer not started`);
+      this.logWithType('log', `${label}: Timer not started`);
       return;
     }
     const elapsed = Date.now() - timer;
-    this.log(`${label}: ${elapsed}ms`);
+    this.logWithType('log', `${label}: ${elapsed}ms`);
     delete this._timers[label];
   }
 
   public timeLog(label = 'default'): void {
     const timer = this._timers[label];
     if ('undefined' == typeof timer) {
-      this.log(`${label}: Timer not started`);
+      this.logWithType('log', `${label}: Timer not started`);
       return;
     }
     const elapsed = Date.now() - timer;
-    this.log(`${label}: ${elapsed}ms`);
+    this.logWithType('log', `${label}: ${elapsed}ms`);
   }
 
   public timeStamp(label = 'default'): void {
-    this.log(`${label}: ${Date.now()}`);
+    this.logWithType('log', `${label}: ${Date.now()}`);
   }
 
   public trace(...data: unknown[]): void {

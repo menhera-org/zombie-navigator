@@ -38,4 +38,5 @@ export type ConsoleDataValue = ConsoleDataStyle | ConsoleDataObject | ConsoleDat
 export type ConsoleData = {
   type: OutputType,
   values: ConsoleDataValue[],
+  stack: string,
 };
