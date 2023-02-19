@@ -10,17 +10,27 @@
 
 @namespace url(http://www.w3.org/1999/xhtml);
 
-.tabs {
+:host {
   display: flex;
-  flex-direction: row;
-  overflow-block: hidden;
-  overflow-inline: auto;
-  background-color: var(--secondary-background-color);
+  flex-direction: column;
 }
 
-.tabs::after {
-  content: '';
+zombie-browser {
   flex: 1;
-  display: block;
-  border-block-end: solid 1px var(--border-color);
+  min-block-size: 0;
+}
+
+zombie-tab-container {
+  display: flex;
+  flex-direction: column;
+  block-size: 100%;
+  overflow: auto;
+  position: relative;
+}
+
+iframe {
+  flex: 1;
+  border: none;
+  min-inline-size: 0;
+  min-block-size: 0;
 }

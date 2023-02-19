@@ -10,17 +10,24 @@
 
 @namespace url(http://www.w3.org/1999/xhtml);
 
-.tabs {
-  display: flex;
-  flex-direction: row;
-  overflow-block: hidden;
-  overflow-inline: auto;
-  background-color: var(--secondary-background-color);
+:host {
+  flex-grow: 1;
+  font-family: system-ui;
+  min-block-size: 0;
+  min-inline-size: 0;
 }
 
-.tabs::after {
-  content: '';
-  flex: 1;
+.header {
   display: block;
+  position: sticky;
+  inset-block-start: 0;
   border-block-end: solid 1px var(--border-color);
+  padding-inline: 1em;
+  padding-block: .5em;
+  background-color: var(--background-color);
+}
+
+.content {
+  margin-inline: .5em;
+  margin-block: .5em;
 }

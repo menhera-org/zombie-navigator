@@ -5,9 +5,8 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import browser from 'webextension-polyfill';
-import { Console } from '../modules/console/Console';
-import { RemoteConsoleConsumer } from '../modules/console/RemoteConsoleConsumer';
-import { ConsoleOutputElement } from '../components/console-output';
+import { ZombieTabbrowserElement } from '../components/zombie-tabbrowser';
+import { ZombiePanelElement } from '../components/zombie-panel';
 
 browser.tabs.getCurrent().then((browserTab) => {
   if (!browserTab || !browserTab.id) {
@@ -25,13 +24,25 @@ browser.tabs.getCurrent().then((browserTab) => {
   }
 });
 
-const consumer = new RemoteConsoleConsumer();
-const console = new Console(consumer);
-const consoleOutput = new ConsoleOutputElement();
-consumer.onMessage.addListener((data) => {
-  consoleOutput.output(data);
-});
-document.body.appendChild(consoleOutput);
+const zombieBrowser = new ZombieTabbrowserElement();
+document.body.appendChild(zombieBrowser);
+
+const tab1 = zombieBrowser.createTab();
+tab1.icon = '/images/icon.svg';
+tab1.title = 'Zombie Navigator';
+tab1.closable = false;
+
+const zombiePanel = new ZombiePanelElement();
+tab1.setTabContent(zombiePanel);
+const console = zombiePanel.console;
+
+const tab2 = zombieBrowser.createTab();
+tab2.icon = '/images/icon.svg';
+tab2.title = 'Tab 2';
+
+const tabContent2 = document.createElement('iframe');
+tabContent2.src = 'https://www.google.com/';
+tab2.setTabContent(tabContent2);
 
 console.log('Hello, world!');
 
@@ -50,8 +61,37 @@ console.log(1,2,3);
 console.count();
 console.count();
 console.countReset();
+console.count();
+console.count();
+console.count();
+console.count();
+console.count();
+console.count();
+console.count();
+console.count();
+console.count();
+console.count();
+console.count();
+console.count();
+console.count();
+console.count();
+console.count();
+console.count();
+console.count();
+console.count();
+console.count();
+console.count();
+console.count();
+console.count();
+console.count();
+console.count();
+console.count();
 
 console.time('foo');
+setTimeout(() => {
+  console.timeLog('foo');
+}, 500);
+
 setTimeout(() => {
   console.timeEnd('foo');
 }, 1000);

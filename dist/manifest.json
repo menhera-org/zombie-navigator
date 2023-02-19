@@ -24,8 +24,8 @@
     "page": "background.html"
   },
   "icons": {
-    "48": "icon.svg",
-    "96": "icon.svg"
+    "48": "images/icon.svg",
+    "96": "images/icon.svg"
   },
   "user_scripts": {
     "api_script": "api.js"

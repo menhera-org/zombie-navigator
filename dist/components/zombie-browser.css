@@ -6,3 +6,23 @@
   file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
+@import '../css/theme.css';
+
+@namespace url(http://www.w3.org/1999/xhtml);
+
+:host {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 100%;
+}
+
+.active-tab-containers {
+  block-size: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 100%;
+}
+
+.inactive-tab-containers {
+  display: none;
+}

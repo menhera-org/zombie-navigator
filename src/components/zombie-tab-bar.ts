@@ -21,6 +21,9 @@ export class ZombieTabBarElement extends HTMLElement {
     const tabsElement = document.createElement('div');
     tabsElement.classList.add('tabs');
     this.shadowRoot.appendChild(tabsElement);
+
+    const tabsSlotElement = document.createElement('slot');
+    tabsElement.appendChild(tabsSlotElement);
   }
 }
 

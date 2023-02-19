@@ -1,0 +1,68 @@
+/* -*- indent-tabs-mode: nil; tab-width: 2; -*- */
+/* vim: set ts=2 sw=2 et ai : */
+/*
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at http://mozilla.org/MPL/2.0/.
+*/
+
+@import '../css/theme.css';
+
+@namespace url(http://www.w3.org/1999/xhtml);
+
+:host {
+  font-family: system-ui;
+}
+
+:host(:not(:first-of-type)) {
+  border-inline-start: solid 1px var(--border-color);
+}
+
+.tab {
+  display: grid;
+  grid-template-columns: max-content max-content max-content;
+  column-gap: .25rem;
+  align-items: center;
+  justify-items: center;
+  padding-inline: .25rem;
+  padding-block: .5rem;
+  border-block-end: solid 1px var(--border-color);
+  background-color: var(--secondary-background-color);
+}
+
+.tab.active {
+  background-color: var(--background-color);
+  border-block-end-color: var(--background-color);
+}
+
+.tab-icon {
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.tab-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-inline-size: 10rem;
+  font-size: .9rem;
+}
+
+.tab-close-button {
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+  opacity: .5;
+  mask: center / 1rem no-repeat url("/images/firefox-icons/close.svg");
+  background-color: var(--text-color);
+}
+
+.tab-close-button:is(:focus, :hover, :active) {
+  opacity: 1;
+}
+
+.tab-close-button:disabled {
+  display: none;
+}
