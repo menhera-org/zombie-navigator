@@ -29,7 +29,6 @@ document.body.appendChild(zombieBrowser);
 
 const tab1 = zombieBrowser.createTab();
 tab1.icon = '/images/icon.svg';
-tab1.title = 'Zombie Navigator';
 tab1.closable = false;
 
 const zombiePanel = new ZombiePanelElement();
@@ -37,12 +36,10 @@ tab1.setTabContent(zombiePanel);
 const console = zombiePanel.console;
 
 const tab2 = zombieBrowser.createTab();
-tab2.icon = '/images/icon.svg';
-tab2.title = 'Tab 2';
+tab2.loadUrl('https://www.google.com/');
 
-const tabContent2 = document.createElement('iframe');
-tabContent2.src = 'https://www.google.com/';
-tab2.setTabContent(tabContent2);
+const tab3 = zombieBrowser.createTab();
+tab3.loadUrl('https://www.wikipedia.org/');
 
 console.log('Hello, world!');
 

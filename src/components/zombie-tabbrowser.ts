@@ -8,10 +8,12 @@ import { ZombieTabBarElement } from "./zombie-tab-bar";
 import { ZombieTabElement } from "./zombie-tab";
 import { ZombieTabContainerElement } from "./zombie-tab-container";
 import { ZombieBrowserElement } from "./zombie-browser";
+import { ZombieToolbarElement } from "./zombie-toolbar";
 import { Tab } from "../modules/zombie-browser/Tab";
 
 export class ZombieTabbrowserElement extends HTMLElement {
   public readonly tabBarElement: ZombieTabBarElement;
+  public readonly toolbarElement: ZombieToolbarElement;
   public readonly browserElement: ZombieBrowserElement;
 
   private readonly _tabs = new Map<number, Tab>();
@@ -32,6 +34,10 @@ export class ZombieTabbrowserElement extends HTMLElement {
     const tabBarElement = new ZombieTabBarElement();
     this.shadowRoot.appendChild(tabBarElement);
     this.tabBarElement = tabBarElement;
+
+    const toolbarElement = new ZombieToolbarElement();
+    this.shadowRoot.appendChild(toolbarElement);
+    this.toolbarElement = toolbarElement;
 
     const browserElement = new ZombieBrowserElement();
     this.shadowRoot.appendChild(browserElement);
@@ -62,6 +68,7 @@ export class ZombieTabbrowserElement extends HTMLElement {
     }
     tab.tabElement.tabActive = true;
     tab.tabContainerElement.slot = 'active';
+    this.toolbarElement.url = tab.url;
   }
 
   public createTab(): Tab {
@@ -102,8 +109,14 @@ export class ZombieTabbrowserElement extends HTMLElement {
       }
     });
 
-    tab.icon = '/images/icon.svg';
-    tab.title = 'New Tab';
+    tab.title = tab.url;
+    tab.onUrlChanged.addListener((url) => {
+      if (tabElement.tabActive) {
+        this.toolbarElement.url = url;
+      }
+      tab.title = url;
+    });
+
     return tab;
   }
 }

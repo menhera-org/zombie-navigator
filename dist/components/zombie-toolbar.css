@@ -1,0 +1,47 @@
+/* -*- indent-tabs-mode: nil; tab-width: 2; -*- */
+/* vim: set ts=2 sw=2 et ai : */
+/*
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at http://mozilla.org/MPL/2.0/.
+*/
+
+@import '../css/theme.css';
+
+@namespace url(http://www.w3.org/1999/xhtml);
+
+:host {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  padding-block: .5em;
+  padding-inline: 1em;
+  align-items: center;
+  column-gap: .5em;
+  border-block-end: solid 1px var(--border-color);
+}
+
+.icon {
+  inline-size: 1em;
+  block-size: 1em;
+  background-color: var(--text-color);
+  mask: center / contain no-repeat url(../images/icon.svg);
+}
+
+.icon[data-icon="http"] {
+  mask-image: url(../images/firefox-icons/defaultFavicon.svg);
+}
+
+.icon[data-icon="https"] {
+  mask-image: url(../images/firefox-icons/lock.svg);
+}
+
+.url-bar {
+  min-inline-size: 0;
+  display: block;
+  border: none;
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  outline: none !important;
+}

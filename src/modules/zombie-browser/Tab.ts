@@ -15,12 +15,16 @@ export class Tab {
 
   public readonly onTitleChanged = new EventSink<string>();
   public readonly onIconChanged = new EventSink<string>();
+  public readonly onUrlChanged = new EventSink<string>();
   public readonly onCloseRequested = new EventSink<void>();
+
+  private _url = 'about:zombie';
 
   public constructor(id: number, tabElement: ZombieTabElement, tabContainerElement: ZombieTabContainerElement) {
     this.id = id;
     this.tabElement = tabElement;
     this.tabContainerElement = tabContainerElement;
+    this.icon = '/images/firefox-icons/defaultFavicon.svg';
   }
 
   public get title(): string {
@@ -41,13 +45,21 @@ export class Tab {
     this.onIconChanged.dispatch(iconUrl);
   }
 
-  public setTabContent(tabContent: HTMLElement): void {
+  public setTabContent(tabContent: HTMLElement, url = 'about:zombie'): void {
     this.tabContainerElement.textContent = '';
     this.tabContainerElement.appendChild(tabContent);
+    this._url = url;
+    this.onUrlChanged.dispatch(url);
   }
 
   public getTabContent(): HTMLElement | null {
     return this.tabContainerElement.firstElementChild as HTMLElement | null;
+  }
+
+  public loadUrl(url: string): void {
+    const iframe = document.createElement('iframe');
+    iframe.src = url;
+    this.setTabContent(iframe, url);
   }
 
   public close(): void {
@@ -62,5 +74,9 @@ export class Tab {
 
   public set closable(closable: boolean) {
     this.tabElement.tabClosable = closable;
+  }
+
+  public get url(): string {
+    return this._url;
   }
 }
